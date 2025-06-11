@@ -1,4 +1,4 @@
-package com.laboratory_sys.app;
+package com.codinglab.labsystem;
 
 import java.util.concurrent.atomic.AtomicLong;
 

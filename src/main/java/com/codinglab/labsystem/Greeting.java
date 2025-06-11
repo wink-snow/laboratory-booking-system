@@ -1,4 +1,4 @@
-package com.laboratory_sys.app;
+package com.codinglab.labsystem;
 public class Greeting {
     private final long id;
     private final String content;

@@ -1,4 +1,4 @@
-package com.laboratory_sys.app;
+package com.codinglab.labsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
