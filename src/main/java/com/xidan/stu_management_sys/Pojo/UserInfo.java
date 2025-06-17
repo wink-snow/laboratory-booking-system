@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInfo {
+    private Long labAdminId;
     private Long userId;
     private String username;
     private String password;

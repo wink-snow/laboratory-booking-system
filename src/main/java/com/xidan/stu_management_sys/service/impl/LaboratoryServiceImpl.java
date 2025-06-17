@@ -18,10 +18,7 @@ public class LaboratoryServiceImpl implements LaboratoryService {
     private LaboratoryMapper laboratoryMapper;
 
 
-    @Override
-    public List<Laboratory> findAvailable() {
-        return laboratoryMapper.findAvailableLaboratories();
-    }
+
 
     @Override
     public Result createLab(Laboratory lab) {

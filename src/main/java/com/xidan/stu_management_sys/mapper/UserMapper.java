@@ -29,8 +29,26 @@ public interface UserMapper {
     int deleteUser(Long id);
 
 
-    /* ✅ 新增：查询 role = 3 实验室管理员 */
-    @Select("SELECT * FROM user_info WHERE role = 3")
+    @Select("""
+    SELECT u.*, la.lab_admin_id
+    FROM user_info u
+    JOIN lab_admin la ON u.user_id = la.user_id
+    WHERE u.role = 3
+""")
+    @Results({
+            @Result(property = "labAdminId", column = "lab_admin_id"),
+            @Result(property = "userId", column = "user_id"),
+            @Result(property = "username", column = "username"),
+            @Result(property = "password", column = "password"),
+            @Result(property = "name", column = "name"),
+            @Result(property = "phone", column = "phone"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "points", column = "points"),
+            @Result(property = "role", column = "role"),
+            @Result(property = "avatar", column = "avatar"),
+            @Result(property = "createdAt", column = "created_at"),
+            @Result(property = "updatedAt", column = "updated_at")
+    })
     List<UserInfo> findLabAdmins();
 
     // ✅ 新增：学生（role = 1）
