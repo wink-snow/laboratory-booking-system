@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   profiles:
     active: dev
@@ -6,6 +9,9 @@ spring:
     name: student_management_sys
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_stu
+    username: root
+    password: 7541207ma
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
