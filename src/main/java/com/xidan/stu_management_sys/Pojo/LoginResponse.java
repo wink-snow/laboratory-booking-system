@@ -14,4 +14,5 @@ public class LoginResponse {
     private String email;
     private String role; // 角色名字符串
     private String avatar;
+    private String token;
 }

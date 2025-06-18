@@ -31,9 +31,9 @@ public interface UserMapper {
 
     @Select("""
     SELECT u.*, la.lab_admin_id
-    FROM user_info u
-    JOIN lab_admin la ON u.user_id = la.user_id
-    WHERE u.role = 3
+                      FROM user_info u
+                      LEFT JOIN lab_admin la ON u.user_id = la.user_id
+                      WHERE u.role = 3
 """)
     @Results({
             @Result(property = "labAdminId", column = "lab_admin_id"),

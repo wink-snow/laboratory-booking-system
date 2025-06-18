@@ -1,6 +1,7 @@
 package com.xidan.stu_management_sys.mapper;
 
 import com.xidan.stu_management_sys.Pojo.ReservationInfo;
+import com.xidan.stu_management_sys.Pojo.ReservationRecordDTO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -14,16 +15,21 @@ public interface ReservationMapper {
             "VALUES (#{userId}, #{labId}, #{operationTime}, #{status}, #{equipmentStatus}, #{labAdminId}, NOW(), NOW())")
     int insert(ReservationInfo reservationInfo);
 
-    @Update("UPDATE reservation_info SET user_id=#{userId}, lab_id=#{labId}, operation_time=#{operationTime}, " +
-            "status=#{status}, equipment_status=#{equipmentStatus}, lab_admin_id=#{labAdminId}, updated_at=NOW() WHERE reservation_id=#{reservationId}")
-    int update(ReservationInfo reservationInfo);
+    @Select("""
+        SELECT
+            r.reservation_id                              AS reservationId,
+            u.name                                         AS userName,
+            l.lab_name                                     AS labName,
+            DATE_FORMAT(r.operation_time,'%Y-%m-%d %H:%i:%s') AS operationTime,
+            r.status                                       AS status,
+            r.equipment_status                             AS equipmentStatus,
+            DATE_FORMAT(r.created_at,'%Y-%m-%d %H:%i:%s')  AS createdAt
+        FROM reservation_info r
+        JOIN user_info     u ON r.user_id = u.user_id
+        JOIN laboratory    l ON r.lab_id  = l.lab_id
+        ORDER BY r.user_id ASC
+        """)
+    List<ReservationRecordDTO> findAllRecords();
 
-    @Delete("DELETE FROM reservation_info WHERE reservation_id = #{id}")
-    int delete(Long id);
 
-    @Select("SELECT COUNT(*) FROM user_info WHERE user_id = #{userId}")
-    int countUserById(Long userId);
-
-    @Select("SELECT COUNT(*) FROM laboratory WHERE lab_id = #{labId}")
-    int countLabById(Long labId);
 }
