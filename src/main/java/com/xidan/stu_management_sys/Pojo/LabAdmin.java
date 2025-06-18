@@ -1,7 +1,8 @@
 package com.xidan.stu_management_sys.Pojo;
-
+import lombok.Data;
 import java.time.LocalDateTime;
 
+@Data
 public class LabAdmin {
     private Long labAdminId;
 

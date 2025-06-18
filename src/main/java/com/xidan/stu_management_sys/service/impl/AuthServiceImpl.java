@@ -12,7 +12,7 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private LoginMapper userMapper;
     @Override
-    public Result login(LoginRequest request) {
+    public Result<LoginResponse> login(LoginRequest request) {
             UserInfo user = userMapper.findByUsernamePasswordAndRole(
                     request.getUsername(),
                     request.getPassword(),
