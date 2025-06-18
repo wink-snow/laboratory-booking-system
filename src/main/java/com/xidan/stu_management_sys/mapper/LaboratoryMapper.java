@@ -11,6 +11,9 @@ import java.util.List;
 @Mapper
 public interface LaboratoryMapper {
 
+    @Select("SELECT * FROM laboratory")
+    List<Laboratory> findAllLaboratories();
+    
     @Select("SELECT * FROM laboratory WHERE status = 1")
     List<Laboratory> findAvailableLaboratories();
 
@@ -22,6 +25,9 @@ public interface LaboratoryMapper {
     @Update("UPDATE laboratory SET lab_admin_id=#{labAdminId}, lab_type_id=#{labTypeId}, lab_name=#{labName}, description=#{description}, " +
             "room_number=#{roomNumber}, start_time=#{startTime}, end_time=#{endTime}, status=#{status}, updated_at=NOW() WHERE lab_id=#{labId}")
     int updateLaboratory(Laboratory lab);
+
+    @Select("SELECT * FROM laboratory WHERE lab_id = #{id}")
+    Laboratory getLaboratoryById(Long id);
 
 
     @Delete("DELETE FROM laboratory WHERE lab_id = #{id}")

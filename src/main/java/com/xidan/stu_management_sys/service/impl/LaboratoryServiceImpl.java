@@ -17,7 +17,10 @@ public class LaboratoryServiceImpl implements LaboratoryService {
     @Autowired
     private LaboratoryMapper laboratoryMapper;
 
-
+    @Override
+    public List<Laboratory> findAll() {
+        return laboratoryMapper.findAllLaboratories();
+    }
     @Override
     public List<Laboratory> findAvailable() {
         return laboratoryMapper.findAvailableLaboratories();
@@ -52,5 +55,10 @@ public class LaboratoryServiceImpl implements LaboratoryService {
         } else {
             return Result.fail("实验室删除失败");
         }
+    }
+
+    @Override
+    public Laboratory getLaboratoryById(Long id) {
+        return laboratoryMapper.getLaboratoryById(id);
     }
 }
