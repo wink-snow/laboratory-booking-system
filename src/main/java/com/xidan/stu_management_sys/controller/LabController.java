@@ -34,7 +34,7 @@ public class LabController {
     }
     
 
-    @GetMapping
+    @GetMapping("/available")
     public List<Laboratory> getAllAvailableLabs() {
         return labService.findAvailable();
     }
@@ -45,10 +45,10 @@ public class LabController {
     }
     
 
-    @PostMapping
-    public Result addLab(@RequestBody Laboratory lab) {
-        return labService.createLab(lab);
-    }
+    // @PostMapping
+    // public Result addLab(@RequestBody Laboratory lab) {
+    //     return labService.createLab(lab);
+    // }
 
     @GetMapping
     public List<LabDTO> listlabs() {
