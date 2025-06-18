@@ -24,6 +24,10 @@ public class Result<T> {
         return r;
     }
 
+    public static <T> Result<T> error(String msg) {
+        return fail(msg);
+    }
+
 
 
 }

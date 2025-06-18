@@ -26,4 +26,13 @@ public interface ReservationMapper {
 
     @Select("SELECT COUNT(*) FROM laboratory WHERE lab_id = #{labId}")
     int countLabById(Long labId);
+
+    @Select("SELECT r.*, u.name as studentName, l.lab_name as labName, l.room_number as roomNumber FROM reservation_info r JOIN user_info u ON r.user_id = u.user_id JOIN laboratory l ON r.lab_id = l.lab_id")
+    List<ReservationInfo> getAllReservationRecords();
+
+    @Update("UPDATE reservation_info SET status = CASE WHEN status = 1 THEN 2 ELSE 1 END WHERE reservation_id = #{id}")
+    int toggleStatus(Long id);
+
+    @Update("UPDATE reservation_info SET status = 3 WHERE reservation_id = #{id}")
+    int cancelReservation(Long id);
 }

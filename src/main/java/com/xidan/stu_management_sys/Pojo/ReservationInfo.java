@@ -19,7 +19,7 @@ public class ReservationInfo {
 
     private LocalDateTime operationTime;
 
-    private Integer status; // 1-待处理，2-已批准，3-已拒绝
+    private Integer status; 
 
     private String equipmentStatus;
 
@@ -28,6 +28,12 @@ public class ReservationInfo {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private String studentName;
+
+    private String labName;
+
+    private String roomNumber;
 
 
 }
