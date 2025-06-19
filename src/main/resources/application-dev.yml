@@ -1,0 +1,12 @@
+# --- 开发环境 (dev) 配置 ---
+server:
+  port: 8080 # 开发端口
+
+spring:
+  datasource:
+    # 你的本地数据库URL
+    url: jdbc:mysql://localhost:3306/db_stu?useSSL=false&serverTimezone=UTC
+    # 你的本地数据库用户名
+    username: root
+    # 你的本地数据库密码
+    password: root
