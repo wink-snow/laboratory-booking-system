@@ -9,4 +9,9 @@ import java.util.List;
 public interface ReservationService {
     List<ReservationRecordDTO> listAll();
 
+    List<ReservationInfo> findAll();
+    Result create(ReservationInfo reservationInfo);
+    Result update(Long id, ReservationInfo reservationInfo);
+    Result delete(Long id);
+
 }
