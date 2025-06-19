@@ -7,10 +7,11 @@ import java.util.List;
 
 
 public interface LaboratoryService {
+    List<Laboratory> findAll();
     List<Laboratory> findAvailable();
     Result createLab(Laboratory lab);
     Result updateLab(Long id, Laboratory lab);
     Result deleteLab(Long id);
 
-
+    Laboratory getLaboratoryById(Long id);
 }

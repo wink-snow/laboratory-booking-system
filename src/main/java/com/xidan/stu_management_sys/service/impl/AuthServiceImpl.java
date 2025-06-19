@@ -5,14 +5,14 @@ import com.xidan.stu_management_sys.mapper.LoginMapper;
 import com.xidan.stu_management_sys.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.xidan.stu_management_sys.util.JwtUtils;
 
 @Service
 public class AuthServiceImpl implements AuthService {
     @Autowired
     private LoginMapper userMapper;
     @Override
-    public Result login(LoginRequest request) {
+    public Result<LoginResponse> login(LoginRequest request) {
             UserInfo user = userMapper.findByUsernamePasswordAndRole(
                     request.getUsername(),
                     request.getPassword(),
@@ -22,6 +22,8 @@ public class AuthServiceImpl implements AuthService {
             if (user == null) {
                 return Result.fail("用户名或密码错误");
             }
+        // 3. 生成 JWT
+            String token = JwtUtils.generateJwt(user);
 
             String roleName = switch (user.getRole()) {
                 case 1 -> "学生";
@@ -35,7 +37,8 @@ public class AuthServiceImpl implements AuthService {
                     user.getName(),
                     user.getEmail(),
                     roleName,
-                    user.getAvatar()
+                    user.getAvatar(),
+                    token
             );
 
             return Result.success(response);
