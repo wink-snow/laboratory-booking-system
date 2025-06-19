@@ -31,6 +31,13 @@ public interface ReservationMapper {
         """)
     List<ReservationRecordDTO> findAllRecords();
 
+    @Update("UPDATE reservation_info SET user_id=#{userId}, lab_id=#{labId}, operation_time=#{operationTime}, " +
+        "status=#{status}, equipment_status=#{equipmentStatus}, lab_admin_id=#{labAdminId}, updated_at=NOW() WHERE reservation_id=#{reservationId}")
+    int update(ReservationInfo reservationInfo);
+
+    @Delete("DELETE FROM reservation_info WHERE reservation_id = #{id}")
+    int delete(Long id);
+
 
     @Select("SELECT COUNT(*) FROM user_info WHERE user_id = #{userId}")
     int countUserById(Long userId);
