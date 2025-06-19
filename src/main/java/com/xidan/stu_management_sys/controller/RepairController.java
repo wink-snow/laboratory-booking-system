@@ -16,7 +16,22 @@ public class RepairController {
     private RepairService repairService;
 
     @GetMapping
-    public List<RepairInfo> listRepairs() {
-        return repairService.listAllRepairs();
+    public List<RepairInfo> getAllRepairs() {
+        return repairService.findAll();
+    }
+
+    @PostMapping
+    public Result reportRepair(@RequestBody RepairInfo repairInfo) {
+        return repairService.createRepair(repairInfo);
+    }
+
+    @PutMapping("/{id}")
+    public Result updateRepair(@PathVariable Long id, @RequestBody RepairInfo repairInfo) {
+        return repairService.updateRepair(id, repairInfo);
+    }
+
+    @DeleteMapping("/{id}")
+    public Result deleteRepair(@PathVariable Long id) {
+        return repairService.deleteRepair(id);
     }
 }
